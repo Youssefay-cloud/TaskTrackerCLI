@@ -47,7 +47,19 @@ public class TaskTracker  {
     
 
 
-    public void deleteTask(){}
+    public void deleteTask(){
+        System.out.println("Enter task id to delete:");
+        int taskid = input.nextInt();
+
+        for(Task t : task){
+            if(t.getid() == taskid){
+                task.remove(t);
+                System.out.println("had been deleted!");
+                return;
+            }
+        }
+        System.out.println("nothing like that");
+    }
     public String taskState(){return null ;}
     public List<Task> taskList(){return null;}
     public List<Task> donetask(){return null;}
