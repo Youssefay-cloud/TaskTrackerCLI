@@ -60,12 +60,58 @@ public class TaskTracker  {
         }
         System.out.println("nothing like that");
     }
-    public String taskState(){return null ;}
-    public List<Task> taskList(){return null;}
-    public List<Task> donetask(){return null;}
-    public List<Task> notdonetask(){return null;}
+
+
+    public String taskState(){
+        System.out.println("Enter taskid to see state: ");
+        int taskid = input.nextInt();
+        input.nextLine();
+        for(Task t : task){
+            if(t.getid() == task.get(taskid)){
+                System.out.println(t.taskstate());
+                return "alright";
+            }
+        }
+        System.out.println("nothing");
+    }
+
+    public List<Task> taskList(){
+
+        for(Task t : task){
+            System.out.println(t);
+        }
+         return task ;
+    }
+
+
+    public List<Task> donetask(){
+        for(Task t : task){
+            if(t.taskstate = "done"){
+                System.out.println(t);
+            }else{
+                System.out.println("There is no done task!!!");
+            }
+        }
+    }
+    public List<Task> notdonetask(){
+        for(Task t : task){
+            if(t.taskstate = "todo"){
+                System.out.println(t);
+            }else{
+                System.out.println("There is no todo task!!!");
+            }
+        }
+    }
+
     public List<Task> inprogtask(){
-        return null;}
+        for(Task t : task){
+            if(t.taskstate = "in-progress"){
+                System.out.println(t);
+            }else{
+                System.out.println("There is no in-progress task!!!");
+            }
+        }
+    }
 
 
 }
