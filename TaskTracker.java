@@ -1,117 +1,78 @@
-package TaskTrackerproj;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TaskTracker  {
-    Scanner input = new Scanner(System.in);
-    public List<Task> task ;
+    public List<Task> tasklist = new ArrayList<>();
+    private static final String FILE_PATH = "tasks.json";
     public int id ;
 
-    public void AddTask(){
-        System.out.println("Enter task name: ");
-        String name = input.nextLine();
-        System.out.println("Enter task desc: ");
-        String desc = input.nextLine();
-        System.out.println("Enter task state: ");
-        String state = input.nextLine();
+    private void saveToFile() {
+        //Empty stringbuilder to start the json string  
+        StringBuilder jsonBuilder = new StringBuilder();
+        //Start the json
+        jsonBuilder.append(" [\n");
 
-        Task newtask = new Task(name, desc, id++,state);
-        task.add(newtask);
+        //We nee to add in this brackets one by one task 
+        for(int i = 0 ; i < tasklist.size(); i++){
+            // Get the task we need to save to file
+            Task t = tasklist.get(i);
 
-    }
+            //start a json object.
+            jsonBuilder.append("   {\n");
 
-    public void updateTask(){
-        System.out.println("Enter task id to update:");
-        int taskid = input.nextInt();
-        input.nextLine(); //consume newline
-        System.out.println("Enter task name: ");
-        String name = input.nextLine();
-        System.out.println("Enter task desc: ");
-        String desc = input.nextLine();
-        System.out.println("Enter task state: ");
-        String state = input.nextLine();
+            //insert what we need manually
+            jsonBuilder.append("  \"id\": ").append(t.taskid).append(", \n");
+            jsonBuilder.append("  \"name\": ").append(t.taskname).append(" ,\n");
+            jsonBuilder.append("  \"desc\": ").append(t.taskdesc).append(" ,\n ");
+            jsonBuilder.append("  \"state\": ").append(t.taskstate).append("\"\n");
 
-        for(Task t : task){
-            if(t.getid() == taskid){
-                task.remove(t);
-                task.add(new Task(name, desc, taskid, state));
-                System.out.println("had been added!");
-                return;
+            //close the object
+            jsonBuilder.append("    }");
+
+            //Add comma if it is not the last object
+            if(i < tasklist.size() - 1){
+                jsonBuilder.append(",\n");
+            }else{
+                jsonBuilder.append("\n");
             }
         }
-        System.out.println("nothing like that");
-            }
+        
+        //close the json file
+        jsonBuilder.append(" ]\n");
+
+        //write to the file.
+        try {
+             Path path = Paths.get(FILE_PATH);
+             Files.writeString(path, jsonBuilder.toString());
+        } catch (Exception e) {
+            System.out.println("Could not save tasks: " + e.getMessage());
+        }
+       
         
 
-
-    
-
-
-    public void deleteTask(){
-        System.out.println("Enter task id to delete:");
-        int taskid = input.nextInt();
-
-        for(Task t : task){
-            if(t.getid() == taskid){
-                task.remove(t);
-                System.out.println("had been deleted!");
-                return;
-            }
-        }
-        System.out.println("nothing like that");
+        
     }
 
+    public void AddTask(String name, String desc){
+        // Id
+        int newId = tasklist.size() + 1 ;
+        // task object with the details
+        Task t = new Task(name, desc, newId, "todo");
+        
+        tasklist.add(t);
 
-    public String taskState(){
-        System.out.println("Enter taskid to see state: ");
-        int taskid = input.nextInt();
-        input.nextLine();
-        for(Task t : task){
-            if(t.getid() == task.get(taskid)){
-                System.out.println(t.taskstate());
-                return "alright";
-            }
-        }
-        System.out.println("nothing");
+        saveToFile();
+
+       System.out.println("Task added successfully (ID: " + newId + ")");
     }
 
-    public List<Task> taskList(){
-
-        for(Task t : task){
-            System.out.println(t);
-        }
-         return task ;
+    public void updtask(int id){
+        Task t = tasklist.get(id);
+        t.
     }
-
-
-    public List<Task> donetask(){
-        for(Task t : task){
-            if(t.taskstate = "done"){
-                System.out.println(t);
-            }else{
-                System.out.println("There is no done task!!!");
-            }
-        }
-    }
-    public List<Task> notdonetask(){
-        for(Task t : task){
-            if(t.taskstate = "todo"){
-                System.out.println(t);
-            }else{
-                System.out.println("There is no todo task!!!");
-            }
-        }
-    }
-
-    public List<Task> inprogtask(){
-        for(Task t : task){
-            if(t.taskstate = "in-progress"){
-                System.out.println(t);
-            }else{
-                System.out.println("There is no in-progress task!!!");
-            }
-        }
-    }
-
 
 }

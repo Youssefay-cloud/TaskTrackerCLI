@@ -1,5 +1,4 @@
-import TaskTrackerproj.Task;
-import TaskTrackerproj.TaskTracker;
+
 
 public class Main {
     static TaskTracker t ;
@@ -11,15 +10,7 @@ public class Main {
 
         String command = args[0];
 
-        t  = new TaskTracker();
-
-        switch(command){
-            case "add":
-                t.AddTask();
-            case "update":
-            case "delete": 
-            case "list": 
-        }
+      
             
     }
 }

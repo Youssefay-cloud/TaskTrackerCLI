@@ -1,4 +1,4 @@
-package TaskTrackerproj;
+
 public class Task {
     
     protected String taskname;
@@ -7,11 +7,11 @@ public class Task {
     protected int taskid ;
 
      //Constructor that will create the objects or here the tasks .
-    public Task(String taskname, String taskdesc, int taskid,String state){
+    public Task(String taskname, String taskdesc, int taskid,String taskstate){
         this.taskname = taskname ;
         this.taskdesc = taskdesc;
         this.taskid = taskid;
-        this.taskstate = state ;
+        this.taskstate = taskstate ;
     }
 
     // Setter and Getters
