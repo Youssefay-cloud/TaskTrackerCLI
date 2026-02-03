@@ -1,8 +1,8 @@
  [
    {
-  "id": "2", 
-  "name": "Testing the plumbing", 
-  "desc": "Get a blumber then get the pipes", 
+  "id": "1", 
+  "name": "Go to Shopping", 
+  "desc": "Buy groceries", 
    "state": "todo"
     }
  ]
