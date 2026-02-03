@@ -1,14 +1,8 @@
-[
-  {
-    "id": 1,
-    "name": "Buy Groceries",
-    "description": "Milk, Eggs, Bread",
-    "status": "todo"
-  },
-  {
-    "id": 2,
-    "name": "Learn Java",
-    "description": "Master file I/O",
-    "status": "todo"
-  }
-]
+ [
+   {
+  "id": "2", 
+  "name": "Testing the plumbing", 
+  "desc": "Get a blumber then get the pipes", 
+   "state": "todo"
+    }
+ ]
