@@ -1,4 +1,4 @@
-package com.TaskTrackerproj;
+package com.TaskTrackerCLI;
 public class Main {
     public static void main(String[] args) {
         if(args.length < 1){

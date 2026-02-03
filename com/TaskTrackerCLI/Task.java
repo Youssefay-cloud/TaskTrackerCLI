@@ -1,4 +1,4 @@
-package com.TaskTrackerproj;
+package com.TaskTrackerCLI;
 public class Task {
     
     protected String taskname;
